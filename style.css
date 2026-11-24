@@ -1,0 +1,141 @@
+:root {
+  --bg: #f4efe6;
+  --ink: #1c1915;
+  --muted: #6d6458;
+  --card: #1c1915;
+  --key: #2c2823;
+  --key-text: #f7f3ec;
+  --fn: #3d3832;
+  --op: #c4652a;
+  --eq: #e8d7b0;
+  --eq-text: #1c1915;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, #fff8ee 0%, transparent 42%),
+    var(--bg);
+}
+
+.page {
+  width: min(920px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 72px 0 80px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 64px;
+  align-items: center;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+h1 {
+  margin: 0;
+  font-size: 72px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.role {
+  margin: 14px 0 0;
+  font-size: 20px;
+}
+
+.bio {
+  margin: 22px 0 0;
+  max-width: 36ch;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.calculator {
+  background: var(--card);
+  border-radius: 28px;
+  padding: 18px;
+  box-shadow: 0 24px 50px rgba(28, 25, 21, 0.18);
+}
+
+.display {
+  min-height: 92px;
+  padding: 16px 12px 8px;
+  color: var(--key-text);
+  font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 48px;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.key {
+  height: 64px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--key);
+  color: var(--key-text);
+  font: inherit;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.key:hover {
+  filter: brightness(1.12);
+}
+
+.key:active {
+  transform: translateY(1px);
+}
+
+.key-fn {
+  background: var(--fn);
+  color: #d9cbb6;
+}
+
+.key-op,
+.key-op.is-active {
+  background: var(--op);
+  color: #fff8ef;
+}
+
+.key-eq {
+  background: var(--eq);
+  color: var(--eq-text);
+}
+
+.key-zero {
+  grid-column: span 2;
+}
+
+@media (max-width: 760px) {
+  .page {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-top: 48px;
+  }
+
+  h1 {
+    font-size: 56px;
+  }
+}
