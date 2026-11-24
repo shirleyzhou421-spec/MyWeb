@@ -26,13 +26,17 @@ body {
 }
 
 .page {
-  width: min(920px, calc(100% - 40px));
+  width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
   padding: 72px 0 80px;
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 64px;
-  align-items: center;
+}
+
+.desk {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  align-items: flex-start;
+  margin-top: 48px;
 }
 
 .eyebrow {
@@ -65,6 +69,7 @@ h1 {
 }
 
 .calculator {
+  width: min(100%, 300px);
   background: var(--card);
   border-radius: 28px;
   padding: 18px;
@@ -128,14 +133,311 @@ h1 {
   grid-column: span 2;
 }
 
+.mines {
+  width: min(100%, 340px);
+  background: #fffaf3;
+  border: 1px solid rgba(28, 25, 21, 0.08);
+  border-radius: 28px;
+  padding: 18px;
+  box-shadow: 0 24px 50px rgba(28, 25, 21, 0.08);
+}
+
+.mines-bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: var(--card);
+}
+
+.mines-readout {
+  font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: #f3d7a1;
+}
+
+.mines-readout:last-child {
+  text-align: right;
+}
+
+.mines-reset {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--eq);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.mines-reset:hover {
+  filter: brightness(1.05);
+}
+
+.mines-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 4px;
+}
+
+.cell {
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 7px;
+  background: var(--key);
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cell:hover {
+  filter: brightness(1.12);
+}
+
+.cell.is-open {
+  background: #efe6d6;
+  cursor: default;
+  filter: none;
+}
+
+.cell.is-open:hover {
+  filter: none;
+}
+
+.cell.is-mine {
+  background: #efe6d6;
+}
+
+.cell.is-hit {
+  background: var(--op);
+}
+
+.cell[data-n="1"] { color: #2f5d9f; }
+.cell[data-n="2"] { color: #3d7a45; }
+.cell[data-n="3"] { color: #b42318; }
+.cell[data-n="4"] { color: #53338d; }
+.cell[data-n="5"] { color: #8a4b12; }
+.cell[data-n="6"] { color: #1f6f78; }
+.cell[data-n="7"] { color: #1c1915; }
+.cell[data-n="8"] { color: #6d6458; }
+
+.mines-hint {
+  margin: 12px 2px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.tetris {
+  width: min(100%, 392px);
+  background: #fffaf3;
+  border: 1px solid rgba(28, 25, 21, 0.08);
+  border-radius: 28px;
+  padding: 18px;
+  box-shadow: 0 24px 50px rgba(28, 25, 21, 0.08);
+}
+
+.tetris:focus {
+  outline: none;
+}
+
+.tetris:focus-visible {
+  outline: 2px solid var(--op);
+  outline-offset: 4px;
+}
+
+.tetris-play {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.tetris-board {
+  display: grid;
+  grid-template-columns: repeat(10, 18px);
+  grid-template-rows: repeat(20, 18px);
+  gap: 2px;
+  width: max-content;
+  padding: 8px;
+  border-radius: 16px;
+  background: #141210;
+}
+
+.tetris-board.is-over {
+  filter: grayscale(0.35) brightness(0.72);
+}
+
+.tetris-cell,
+.tetris-mini {
+  border-radius: 3px;
+  background: rgba(255, 248, 239, 0.06);
+}
+
+.tetris-cell[data-c="I"],
+.tetris-mini[data-c="I"] { background: #f0d7a4; }
+.tetris-cell[data-c="O"],
+.tetris-mini[data-c="O"] { background: #e0a045; }
+.tetris-cell[data-c="T"],
+.tetris-mini[data-c="T"] { background: #c47b5a; }
+.tetris-cell[data-c="S"],
+.tetris-mini[data-c="S"] { background: #7ea36f; }
+.tetris-cell[data-c="Z"],
+.tetris-mini[data-c="Z"] { background: #c45b4a; }
+.tetris-cell[data-c="J"],
+.tetris-mini[data-c="J"] { background: #6f8faf; }
+.tetris-cell[data-c="L"],
+.tetris-mini[data-c="L"] { background: #d9893b; }
+
+.tetris-cell.is-ghost {
+  background: transparent;
+}
+
+.tetris-cell.is-ghost[data-c="I"] { box-shadow: inset 0 0 0 2px #f0d7a4; }
+.tetris-cell.is-ghost[data-c="O"] { box-shadow: inset 0 0 0 2px #e0a045; }
+.tetris-cell.is-ghost[data-c="T"] { box-shadow: inset 0 0 0 2px #c47b5a; }
+.tetris-cell.is-ghost[data-c="S"] { box-shadow: inset 0 0 0 2px #7ea36f; }
+.tetris-cell.is-ghost[data-c="Z"] { box-shadow: inset 0 0 0 2px #c45b4a; }
+.tetris-cell.is-ghost[data-c="J"] { box-shadow: inset 0 0 0 2px #6f8faf; }
+.tetris-cell.is-ghost[data-c="L"] { box-shadow: inset 0 0 0 2px #d9893b; }
+
+.tetris-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 112px;
+  padding: 12px;
+  border-radius: 16px;
+  background: var(--card);
+  color: var(--key-text);
+}
+
+.tetris-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: #d9cbb6;
+}
+
+.tetris-next {
+  display: grid;
+  grid-template-columns: repeat(4, 16px);
+  grid-template-rows: repeat(4, 16px);
+  gap: 2px;
+  width: max-content;
+}
+
+.tetris-mini {
+  width: 16px;
+  height: 16px;
+}
+
+.tetris-stats {
+  display: grid;
+  gap: 10px;
+}
+
+.tetris-stats strong {
+  font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #f3d7a1;
+}
+
+.tetris-start {
+  margin-top: auto;
+  height: 42px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--eq);
+  color: var(--eq-text);
+  font: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tetris-start:hover,
+.tetris-pad button:hover {
+  filter: brightness(1.06);
+}
+
+.tetris-pad {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tetris-pad button {
+  height: 42px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--key);
+  color: var(--key-text);
+  font: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tetris-pad button:active,
+.tetris-start:active {
+  transform: translateY(1px);
+}
+
+.tetris-status {
+  margin: 12px 2px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
 @media (max-width: 760px) {
   .page {
-    grid-template-columns: 1fr;
-    gap: 36px;
     padding-top: 48px;
+  }
+
+  .desk {
+    margin-top: 36px;
   }
 
   h1 {
     font-size: 56px;
+  }
+
+  .calculator,
+  .mines,
+  .tetris {
+    width: 100%;
+  }
+
+  .tetris-play {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tetris-side {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tetris-stats {
+    grid-auto-flow: column;
+    gap: 16px;
+  }
+
+  .tetris-start {
+    margin-top: 0;
+    min-width: 112px;
   }
 }

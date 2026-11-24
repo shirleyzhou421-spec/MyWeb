@@ -13,10 +13,11 @@
       <h1>limei</h1>
       <p class="role">产品经理</p>
       <p class="bio">
-        我把想法拆成可以落地的产品。这个页面很简单：一段自我介绍，和一个能真正算数的计算器。
+        我把想法拆成可以落地的产品。这个页面很简单：一段自我介绍、一个计算器，还有扫雷和俄罗斯方块。
       </p>
     </header>
 
+    <div class="desk">
     <section class="calculator" aria-label="计算器">
       <div class="display" id="display" aria-live="polite">0</div>
       <div class="keys">
@@ -45,6 +46,52 @@
         <button type="button" class="key key-eq" data-action="equals">=</button>
       </div>
     </section>
+
+    <section class="mines" aria-label="扫雷">
+      <div class="mines-bar">
+        <span class="mines-readout" id="mine-count">010</span>
+        <button type="button" class="mines-reset" id="mine-reset" aria-label="重新开始">🙂</button>
+        <span class="mines-readout" id="mine-time">000</span>
+      </div>
+      <div class="mines-board" id="mine-board"></div>
+      <p class="mines-hint">左键翻开，右键插旗。点笑脸重新开始。</p>
+    </section>
+
+    <section class="tetris" id="tetris" tabindex="0" aria-label="俄罗斯方块">
+      <div class="tetris-play">
+        <div class="tetris-board" id="tetris-board"></div>
+        <div class="tetris-side">
+          <div>
+            <span class="tetris-label">下一个</span>
+            <div class="tetris-next" id="tetris-next"></div>
+          </div>
+          <div class="tetris-stats">
+            <div>
+              <span class="tetris-label">分数</span>
+              <strong id="tetris-score">0</strong>
+            </div>
+            <div>
+              <span class="tetris-label">行数</span>
+              <strong id="tetris-lines">0</strong>
+            </div>
+            <div>
+              <span class="tetris-label">等级</span>
+              <strong id="tetris-level">1</strong>
+            </div>
+          </div>
+          <button type="button" class="tetris-start" id="tetris-start">开始</button>
+        </div>
+      </div>
+      <div class="tetris-pad">
+        <button type="button" data-dir="left" aria-label="左移">←</button>
+        <button type="button" data-dir="rotate" aria-label="旋转">↻</button>
+        <button type="button" data-dir="right" aria-label="右移">→</button>
+        <button type="button" data-dir="down" aria-label="加速">↓</button>
+        <button type="button" data-dir="drop" aria-label="直接落下">落下</button>
+      </div>
+      <p class="tetris-status" id="tetris-status">方向键移动，↑ 旋转，空格直接落下。</p>
+    </section>
+    </div>
   </main>
 
   <script src="script.js"></script>
